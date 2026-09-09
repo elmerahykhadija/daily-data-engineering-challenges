@@ -1,9 +1,40 @@
 /*
-Calculate each user's average session time, where a session is defined as the time difference between a page_load and a page_exit. Assume each user has only one session per day. If there are multiple page_load or page_exit events on the same day, use only the latest page_load and the earliest page_exit. Only consider sessions where the page_load occurs before the page_exit on the same day. Output the user_id and their average session time.
+Calculer le temps moyen de session pour chaque utilisateur.
+Une session correspond à la différence entre un page_load et un page_exit.
+On suppose qu'un utilisateur n'a qu'une seule session par jour.
+Si plusieurs événements page_load ou page_exit se produisent le même jour,
+on conserve le dernier page_load et le premier page_exit.
+On ne considère que les sessions où page_load se produit avant page_exit le même jour.
+Sortie: user_id et durée moyenne de session.
 
-Table
+Table:
 facebook_web_log
 */
+
+/* Version 1 */
+WITH pLoad AS (
+select user_id,date(timestamp) as jr,max(timestamp) as page_load
+from facebook_web_log
+where action='page_load'
+group by user_id,action,date(timestamp)
+),
+pExit as (
+select user_id,date(timestamp) as jr,min(timestamp) as page_exit
+from facebook_web_log
+where action='page_exit'
+group by user_id,action,date(timestamp)
+),
+t as (
+select l.user_id,TIMESTAMPDIFF(second, l.page_load, e.page_exit)  as session,e.jr
+from pLoad l
+join pExit e on (l.user_id=e.user_id) and (l.jr=e.jr)
+where l.page_load < e.page_exit
+)
+select  user_id , avg(session) as avg_session_duration
+from t
+group by user_id;
+
+/* Version 2 */
 WITH
 t1 AS (
     SELECT
