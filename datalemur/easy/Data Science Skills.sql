@@ -1,0 +1,12 @@
+/*Given a table of candidates and their skills, you're tasked with finding the candidates best suited for an open Data Science job. You want to find candidates who are proficient in Python, Tableau, and PostgreSQL.
+
+Write a query to list the candidates who possess all of the required skills for the job. Sort the output by candidate ID in ascending order.*/
+with t1 as ( 
+SELECT candidate_id,count(*) as n
+FROM candidates
+WHERE skill='Python' or skill='Tableau' or skill='PostgreSQL'
+group by candidate_id
+)
+select candidate_id
+from t1
+where n=3 ;

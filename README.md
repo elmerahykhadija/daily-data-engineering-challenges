@@ -1,6 +1,6 @@
 # 📊 Daily Data Engineering Challenges
 
-A personal learning repository where I solve **daily data challenges** from [StrataScratch](https://www.stratascratch.com/) using **SQL, PySpark, and Pandas**.
+A personal learning repository where I solve **daily data challenges** from [StrataScratch](https://www.stratascratch.com/) and [DataLemur](https://datalemur.com/) using **SQL, PySpark, and Pandas**.
 
 The goal is to practice problem-solving, strengthen data manipulation skills, and build consistency through daily coding practice.
 
@@ -10,6 +10,13 @@ The goal is to practice problem-solving, strengthen data manipulation skills, an
 ![SQL](https://img.shields.io/badge/SQL-003B57?style=for-the-badge&logo=postgresql&logoColor=white)
 ![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+
+## 🌐 Platforms
+
+| Platform | Description | Link |
+|---|---|---|
+| **StrataScratch** | SQL, PySpark & Pandas challenges from real companies | [stratascratch.com](https://www.stratascratch.com/) |
+| **DataLemur** | SQL interview questions from top tech companies | [datalemur.com](https://datalemur.com/) |
 
 ## 📚 Topics Covered
 
@@ -23,22 +30,28 @@ The goal is to practice problem-solving, strengthen data manipulation skills, an
 
 ## 📁 Repository Structure
 
-Solutions are categorized by technology and then by difficulty level (`easy`, `medium`, `hard`).
+Solutions are organized by **platform**, then by **technology** (for StrataScratch) or directly by **difficulty** (for DataLemur).
 
 ```text
 daily-data-engineering-challenges/
 │
-├── Sql/
-│   ├── easy/
-│   ├── medium/
-│   └── hard/
+├── stratascratch/              ← Challenges from StrataScratch
+│   ├── Sql/
+│   │   ├── easy/
+│   │   ├── medium/
+│   │   └── hard/
+│   │
+│   ├── Pyspark/
+│   │   ├── easy/
+│   │   ├── medium/
+│   │   └── hard/
+│   │
+│   └── Pandas/
+│       ├── easy/
+│       ├── medium/
+│       └── hard/
 │
-├── PySpark/
-│   ├── easy/
-│   ├── medium/
-│   └── hard/
-│
-├── Pandas/
+├── datalemur/                  ← Challenges from DataLemur
 │   ├── easy/
 │   ├── medium/
 │   └── hard/
@@ -59,10 +72,20 @@ This repository also serves as a record of my **daily learning journey and progr
 
 ## 📈 Progress
 
+### StrataScratch
+
 | Technology | Challenges     |
 | ---------- | -------------- |
 | SQL        | 🔄 In Progress |
 | PySpark    | 🔄 In Progress |
 | Pandas     | 🔄 In Progress |
+
+### DataLemur
+
+| Difficulty | Challenges     |
+| ---------- | -------------- |
+| Easy       | 🔄 In Progress |
+| Medium     | 🔄 In Progress |
+| Hard       | 🔄 In Progress |
 
 > 🚀 **Consistency over perfection. One challenge at a time.**
