@@ -8,3 +8,22 @@ user_id	integer
 post_id	integer
 post_content	text
 post_date	timestamp*/
+with two_posts2021 as (
+select distinct user_id 
+from (
+  select user_id,post_id,post_content,post_date,count(*) over(partition by user_id) as N 
+  from posts
+  where EXTRACT(year from post_date)=2021
+) as t
+where n>=2  
+),
+t1 as (
+select a.user_id,a.post_id,a.post_content,a.post_date
+from posts a 
+JOIN two_posts2021 b on b.user_id=a.user_id
+
+)
+select user_id,max(post_date)::date - min(post_date)::date as days_between
+from t1
+group by user_id
+order by days_between;
