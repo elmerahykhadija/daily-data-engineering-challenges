@@ -23,3 +23,48 @@ item_id	integer
 item_type	string
 item_category	string
 square_footage	decimal*/
+
+WITH prime AS (
+    SELECT SUM(square_footage) AS sprime
+    FROM inventory
+    WHERE item_type = 'prime_eligible'
+),
+not_prime AS (
+    SELECT SUM(square_footage) AS snon_prime
+    FROM inventory
+    WHERE item_type = 'not_prime'
+)
+SELECT DISTINCT
+    item_type,
+    CASE
+        WHEN item_type = 'prime_eligible'
+        THEN ((
+            SELECT FLOOR(500000 / sprime)
+            FROM prime
+        )*(
+            SELECT
+            COUNT(*) AS number_of_items
+              FROM inventory
+              where item_type='prime_eligible'
+          )
+        )
+        ELSE (GREATEST(
+            FLOOR(
+                (
+                    SELECT 500000 - sprime * FLOOR(500000 / sprime)
+                    FROM prime
+                ) / snon_prime
+            ),
+            1
+        )*(
+            SELECT
+            COUNT(*) AS number_of_items
+              FROM inventory
+              where item_type='not_prime'
+          )
+        )
+    END AS item_count
+FROM inventory
+CROSS JOIN not_prime
+ORDER BY item_count DESC;
+
