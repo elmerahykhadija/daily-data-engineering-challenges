@@ -12,7 +12,7 @@ import pyspark
 df1=winemag_p1.select("variety").distinct()
 df2=winemag_p2.select("variety").distinct()
 output=df1.unionByName(df2)
-output=output.orderBy(output["variety"])
+output=output.orderBy(output["variety"]).distinct()
 
 
 output.toPandas()
